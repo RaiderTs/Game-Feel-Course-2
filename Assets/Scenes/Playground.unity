@@ -640,7 +640,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 710606986}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Bullet Spawn Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -806,7 +806,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -393016719
+  m_SortingLayerID: 18360169
   m_SortingLayer: -1
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 3351cbb935635d54785c522352f4a7bc, type: 3}
@@ -842,7 +842,7 @@ GameObject:
   - component: {fileID: 2011273891}
   - component: {fileID: 2011273889}
   - component: {fileID: 2011273888}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -859,7 +859,7 @@ GameObject:
   m_Component:
   - component: {fileID: 893427218}
   - component: {fileID: 893427219}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Character Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -948,7 +948,7 @@ GameObject:
   - component: {fileID: 994124718}
   - component: {fileID: 994124717}
   - component: {fileID: 994124716}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Foreground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6768,7 +6768,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -393016719
+  m_SortingLayerID: 18360169
   m_SortingLayer: -1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: b1142def10cd793419b48ec831b7e8cf, type: 3}
@@ -6800,7 +6800,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1154857000}
   - component: {fileID: 1154857001}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Gun Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7075,7 +7075,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1414218012}
   - component: {fileID: 1414218015}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7113,6 +7113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletSpawnPoint: {fileID: 710606986}
   _bulletPrefab: {fileID: -5611149099131491127, guid: 9dca18bc1fee05d488922a753a58ca8d, type: 3}
+  _gunFireCD: 0.5
 --- !u!1 &1481284113
 GameObject:
   m_ObjectHideFlags: 3
@@ -7440,7 +7441,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -393016719
+  m_SortingLayerID: 18360169
   m_SortingLayer: -1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 66e6bb1711f39e547a1a1f16441ada19, type: 3}
@@ -7716,7 +7717,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -393016719
+  m_SortingLayerID: 18360169
   m_SortingLayer: -1
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 88ebc0d2c0047434cb27ee16193bafc4, type: 3}
@@ -7748,7 +7749,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2076065032}
   - component: {fileID: 2076065033}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
