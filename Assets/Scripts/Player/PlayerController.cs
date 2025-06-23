@@ -34,9 +34,9 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         GatherInput();
+        Movement();
         Jump();
         HandleSpriteFlip();
-        Movement();
     }
 
     public bool IsFacingRight()
