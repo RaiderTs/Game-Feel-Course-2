@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class Gun : MonoBehaviour
 {
-    public static Action OnShoot;
+    public static Action OnShoot; // делегат для выстрелов
 
     // public Transform BulletSpawnPoint => _bulletSpawnPoint;
 
@@ -41,10 +41,10 @@ public class Gun : MonoBehaviour
         RotateGun();
     }
 
-
+    // подписка на делегат событий (обьявлен вверху класса)
     private void OnEnable()
     {
-        OnShoot += ShootProjectile;
+        OnShoot += ShootProjectile; // синтаксис подписки на событие
         OnShoot += ResetLastFireTime;
         OnShoot += FireAnimation;
         OnShoot += GunScreenShake;
@@ -52,7 +52,7 @@ public class Gun : MonoBehaviour
 
     private void OnDisable()
     {
-        OnShoot -= ShootProjectile;
+        OnShoot -= ShootProjectile; // синтаксис отписки от события
         OnShoot -= ResetLastFireTime;
         OnShoot -= FireAnimation;
         OnShoot -= GunScreenShake;
