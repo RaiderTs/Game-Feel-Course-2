@@ -15,6 +15,7 @@ public class Gun : MonoBehaviour
 
     private ObjectPool<Bullet> _bulletPool; // пул для быстрой генерации пуль
     private static readonly int FIRE_HASH = Animator.StringToHash("Fire"); // хэш для анимации
+    
     private Vector2 _mousePos;
     private float _lastFireTime = 0f;
 
