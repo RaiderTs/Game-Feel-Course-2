@@ -12,11 +12,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _jumpStrength = 7f;
 
-    // private PlayerInput _playerInput;
-    // private FrameInput _frameInput;
+    private PlayerInput _playerInput;
+    private FrameInput _frameInput;
 
     private Rigidbody2D _rigidBody;
-    // private Movement _movement;
+    private Movement _movement;
 
 
     public void Awake()
@@ -27,8 +27,8 @@ public class PlayerController : MonoBehaviour
         }
 
         _rigidBody = GetComponent<Rigidbody2D>();
-        // _playerInput = GetComponent<PlayerInput>(); // получаем компонент PlayerInput
-        // _movement = GetComponent<Movement>(); // получаем компонент Movement
+        _playerInput = GetComponent<PlayerInput>(); // получаем компонент PlayerInput
+        _movement = GetComponent<Movement>(); // получаем компонент Movement
     }
 
     private void Update()
@@ -47,7 +47,8 @@ public class PlayerController : MonoBehaviour
 
     private bool CheckGrounded()
     {
-        Collider2D isGrounded = Physics2D.OverlapBox(_feetTransform.position, _groundCheck, 0f, _groundLayer); // проверяем на земле
+        Collider2D isGrounded =
+            Physics2D.OverlapBox(_feetTransform.position, _groundCheck, 0f, _groundLayer); // проверяем на земле
         return isGrounded;
     }
 
@@ -59,20 +60,20 @@ public class PlayerController : MonoBehaviour
 
     private void GatherInput()
     {
-        // _frameInput = _playerInput.FrameInput;
+        _frameInput = _playerInput.FrameInput;
     }
 
     private void Movement()
     {
-        // _movement.SetCurrentDirection(_frameInput.Move.x); // устанавливаем направление движения
+        _movement.SetCurrentDirection(_frameInput.Move.x); // устанавливаем направление движения
     }
 
     private void Jump()
     {
-        // if (!_frameInput.Jump)
-        // {
-        //     return;
-        // }
+        if (!_frameInput.Jump)
+        {
+            return;
+        }
 
         if (CheckGrounded())
         {
