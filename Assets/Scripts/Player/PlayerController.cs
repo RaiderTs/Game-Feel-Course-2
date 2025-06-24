@@ -15,9 +15,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpStrength = 7f;
     [SerializeField] private float _extraGravity = 700f;
     [SerializeField] private float _gravityDelay = 0.2f;
+    [SerializeField] private float _coyoteTime = 0.5f;
 
     private float _timeInAir;
     private bool _doubleJumpAvailable;
+    private float _coyoteTimer;
 
     private PlayerInput _playerInput;
     private FrameInput _frameInput;
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour
     {
         GatherInput();
         Movement();
+        CoyoteTimer();
         HandleJump();
         HandleSpriteFlip();
         GravityDelay();
@@ -120,22 +123,39 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (_doubleJumpAvailable)
+        if (CheckGrounded()) // если на земле
+        {
+            OnJump.Invoke();
+        }
+        else if (_coyoteTimer > 0f)
+        {
+            OnJump.Invoke();
+        }
+        else if (_doubleJumpAvailable)
         {
             _doubleJumpAvailable = false;
             OnJump.Invoke();
         }
-        else if (CheckGrounded())
+    }
+
+    private void CoyoteTimer()
+    {
+        if (CheckGrounded())
         {
+            _coyoteTimer = _coyoteTime;
             _doubleJumpAvailable = true;
-            OnJump.Invoke();
+        }
+        else
+        {
+            _coyoteTimer -= Time.deltaTime;
         }
     }
 
-    private void ApplyJumpForce()
+    private void ApplyJumpForce() // применить силу прыжка
     {
         _rigidBody.velocity = Vector2.zero; // velocity -  скорость обьекта. Rigidbody - переводится как твердое тело
         _timeInAir = 0f; // обнуляем время в воздухе
+        _coyoteTimer = 0f;
         _rigidBody.AddForce(Vector2.up * _jumpStrength, ForceMode2D.Impulse);
     }
 
