@@ -10,11 +10,13 @@ public class Flash : MonoBehaviour
     [SerializeField] private float _flashTime = 0.1f;
 
     private SpriteRenderer[] _spriteRenderer;
+    private ColorChanger _colorChanger;
 
     private void Awake()
 
     {
         _spriteRenderer = GetComponentsInChildren<SpriteRenderer>(); // берем все спрайты
+        _colorChanger = GetComponent<ColorChanger>(); // берем компонент ColorChanger
     }
 
     public void StartFlash()
@@ -27,7 +29,10 @@ public class Flash : MonoBehaviour
         foreach (var sr in _spriteRenderer)
         {
             sr.material = _whiteFlashMaterial;
-            sr.color = Color.white;
+            if (_colorChanger)
+            {
+                _colorChanger.SetColor(Color.white);
+            }
         }
 
         yield return new WaitForSeconds(_flashTime);
@@ -39,6 +44,11 @@ public class Flash : MonoBehaviour
         foreach (var sr in _spriteRenderer)
         {
             sr.material = _defaultMaterial;
+
+            if (_colorChanger)
+            {
+                _colorChanger.SetColor(_colorChanger.DefaultColor);
+            }
         }
     }
 }

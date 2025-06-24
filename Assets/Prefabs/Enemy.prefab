@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 389456113055390638}
   - component: {fileID: -2740209837834474784}
   - component: {fileID: 2215706593845333642}
+  - component: {fileID: 1486000089118294918}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -196,6 +197,23 @@ MonoBehaviour:
   _defaultMaterial: {fileID: 2100000, guid: 0bd7d03c303314d48a90145828dd7de9, type: 2}
   _whiteFlashMaterial: {fileID: 2100000, guid: cbea2e72019b87d4c805c7118bb4bf13, type: 2}
   _flashTime: 0.1
+--- !u!114 &1486000089118294918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500829499347730933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d66a69113f7ad4745bf2409a84228f43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colors:
+  - {r: 0.5529412, g: 0.78039217, b: 1, a: 1}
+  - {r: 1, g: 0.5254902, b: 0.5254902, a: 1}
+  - {r: 0.40784314, g: 1, b: 0.5372549, a: 1}
+  _fillSpriteRenderer: {fileID: 7564454557696005338}
 --- !u!1 &5153281642299242202
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +288,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1899769647, guid: 01b49b46e6384a6419be35fbdd9b5c1a, type: 3}
-  m_Color: {r: 1, g: 0.6392157, b: 0.6392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
