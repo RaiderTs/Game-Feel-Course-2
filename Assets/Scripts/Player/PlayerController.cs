@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Vector2 MoveInput => _frameInput.Move;
+
     public static Action OnJump; // паттерн обсервер
 
     public static PlayerController Instance;
