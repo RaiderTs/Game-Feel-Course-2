@@ -60,6 +60,7 @@ public class PlayerAnimation : MonoBehaviour
         Quaternion targetCharacterRotation = Quaternion.Euler(currentCharacterRotation.eulerAngles.x,
             currentCharacterRotation.eulerAngles.y, targetAngle);
 
-        _characterSpriteTransform.rotation = targetCharacterRotation;
+        _characterSpriteTransform.rotation = Quaternion.Lerp(currentCharacterRotation, targetCharacterRotation,
+            _tiltSpeed * Time.deltaTime);
     }
 }

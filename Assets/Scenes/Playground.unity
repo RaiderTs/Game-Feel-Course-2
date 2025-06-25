@@ -12716,7 +12716,7 @@ MonoBehaviour:
   _moveDustVFX: {fileID: 1505976882}
   _tiltAngle: 20
   _tiltSpeed: 5
-  _playerSpriteTransform: {fileID: 0}
+  _characterSpriteTransform: {fileID: 893427218}
 --- !u!1 &2043640393
 GameObject:
   m_ObjectHideFlags: 0
