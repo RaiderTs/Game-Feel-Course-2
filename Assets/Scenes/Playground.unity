@@ -7733,6 +7733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _splatterPrefab: {fileID: 0}
+  _deathVFX: {fileID: 0}
   _startingHealth: 5
 --- !u!114 &2011273896
 MonoBehaviour:

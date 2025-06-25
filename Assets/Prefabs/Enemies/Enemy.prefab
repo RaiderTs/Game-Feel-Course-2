@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _splatterPrefab: {fileID: 6560999346475556349, guid: 9c2691629d7c50c45b6e27beb0bd4b54, type: 3}
+  _deathVFX: {fileID: 8644474715491098679, guid: 0fa205e2847320c4a9c21fd3bdc9995e, type: 3}
   _startingHealth: 3
 --- !u!50 &-6445784336495608663
 Rigidbody2D:
