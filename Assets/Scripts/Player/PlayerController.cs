@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private bool CheckGrounded()
+    public bool CheckGrounded()
     {
         Collider2D isGrounded =
             Physics2D.OverlapBox(_feetTransform.position, _groundCheck, 0f, _groundLayer); // проверяем на земле
