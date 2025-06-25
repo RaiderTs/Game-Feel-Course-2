@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public Action OnDeath;
+    public GameObject SplatterPrefab => _splatterPrefab;
+    public GameObject DeathVFX => _deathVFX;
+
+    public static Action<Health> OnDeath;
 
     [SerializeField] private GameObject _splatterPrefab;
     [SerializeField] private GameObject _deathVFX;
@@ -17,18 +20,6 @@ public class Health : MonoBehaviour
     private void Start()
     {
         ResetHealth();
-    }
-
-    private void OnEnable()
-    {
-        OnDeath += SpawnDeathVFX;
-        OnDeath += SpawnDeathSplatterPrefab;
-    }
-
-    private void OnDisable()
-    {
-        OnDeath -= SpawnDeathVFX;
-        OnDeath -= SpawnDeathSplatterPrefab;
     }
 
 
@@ -43,28 +34,8 @@ public class Health : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
-            OnDeath?.Invoke();
+            OnDeath?.Invoke(this);
             Destroy(gameObject);
         }
-    }
-
-    private void SpawnDeathSplatterPrefab()
-    {
-        GameObject newSplatterPrefab = Instantiate(_splatterPrefab, transform.position, transform.rotation);
-        SpriteRenderer deathSplatterSpriteRenderer = newSplatterPrefab.GetComponent<SpriteRenderer>();
-        ColorChanger colorChanger = GetComponent<ColorChanger>(); // получаем компонент ColorChanger
-        Color currentColor = colorChanger.DefaultColor; // получаем цвет из компонента ColorChanger
-
-        deathSplatterSpriteRenderer.color = currentColor;
-    }
-
-    private void SpawnDeathVFX()
-    {
-        GameObject deathVFX = Instantiate(_deathVFX, transform.position, transform.rotation);
-        ParticleSystem.MainModule ps = deathVFX.GetComponent<ParticleSystem>().main;
-
-        ColorChanger colorChanger = GetComponent<ColorChanger>(); // получаем компонент ColorChanger
-        Color currentColor = colorChanger.DefaultColor; // получаем цвет из компонента ColorChanger
-        ps.startColor = currentColor;
     }
 }
