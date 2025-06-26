@@ -23,7 +23,7 @@ public class PlayerAnimation : MonoBehaviour
     private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
-        _impulseSource = GetComponent<CinemachineImpulseSource>(); 
+        _impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     private void Update()
@@ -45,8 +45,7 @@ public class PlayerAnimation : MonoBehaviour
     private void FixedUpdate()
     {
         _velocityBeforePhysicsUpdate = _rigidBody.velocity;
-        Debug.Log(_velocityBeforePhysicsUpdate);
-    }   
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
