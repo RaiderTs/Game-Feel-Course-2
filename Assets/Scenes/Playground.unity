@@ -165,7 +165,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _masterVolume: 1
-  _soundsCollectionSo: {fileID: 11400000, guid: 092f09b981372414ba754493c385f3d0, type: 2}
+  _soundsCollectionSO: {fileID: 11400000, guid: 092f09b981372414ba754493c385f3d0, type: 2}
+  _sfxMixerGroup: {fileID: -1169446126542013348, guid: a484ec89fd855cd41a9fb1fbf11e6dc2, type: 2}
+  _musicMixerGroup: {fileID: 6455289569676114117, guid: a484ec89fd855cd41a9fb1fbf11e6dc2, type: 2}
 --- !u!1 &152649724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,7 +1183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86895f9ad3c19b242b3050f0782d2a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _discoBallPartyTime: 5
+  _discoBallPartyTime: 7
   _discoGlobalLightIntensity: 0.2
   _globalLight: {fileID: 619394801}
 --- !u!1 &710606985

@@ -162,8 +162,7 @@ public class AudioManager : MonoBehaviour
         PlayRandomSound(_soundsCollectionSO.DiscoParty);
         float soundLength =
             _soundsCollectionSO.DiscoParty[0].Clip.length; // Получаем длину первого аудиоклипа из коллекции DiscoParty
-        Invoke("FightMusic",
-            soundLength); // Запускает метод FightMusic() через soundLength секунд, то есть после окончания проигрывания текущего аудиоклипа
+        Utils.RunAfterDelay(this, soundLength, FightMusic);
     }
 
     #endregion
