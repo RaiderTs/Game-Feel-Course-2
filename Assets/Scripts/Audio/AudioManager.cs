@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField] private float _masterVolume = 1f;
     [SerializeField] private SoundSO _gunShoot;
     [SerializeField] private SoundSO _jump;
 
@@ -20,21 +22,47 @@ public class AudioManager : MonoBehaviour
         PlayerController.OnJump += PlayerController_OnJump;
     }
 
-    private void PlaySound(SoundSO soundSO)
+    private void SoundToPlay(SoundSO soundSO)
+    {
+        AudioClip clip = soundSO.Clip;
+        float pitch = soundSO.Pitch;
+        float volume = soundSO.Volume * _masterVolume;
+        bool loop = soundSO.Loop;
+
+        if (soundSO.RandomizePitch)
+        {
+            float randomPitchModifier =
+                Random.Range(-soundSO.RandomPitchRangeModifier, soundSO.RandomPitchRangeModifier);
+            pitch = soundSO.Pitch + randomPitchModifier;
+        }
+
+
+        PlaySound(clip, pitch, volume, loop);
+    }
+
+    private void PlaySound(AudioClip clip, float pitch, float volume, bool loop)
     {
         GameObject soundObject = new GameObject("Temp Audio Source");
         AudioSource audioSource = soundObject.AddComponent<AudioSource>();
-        audioSource.clip = soundSO.Clip;
+        audioSource.clip = clip;
+        audioSource.pitch = pitch;
+        audioSource.volume = volume;
+        audioSource.loop = loop;
         audioSource.Play();
+
+        if (!loop)
+        {
+            Destroy(soundObject, clip.length);
+        }
     }
 
     private void Gun_OnShoot()
     {
-        PlaySound(_gunShoot);
+        SoundToPlay(_gunShoot);
     }
 
     private void PlayerController_OnJump()
     {
-        PlaySound(_jump);
+        SoundToPlay(_jump);
     }
 }
