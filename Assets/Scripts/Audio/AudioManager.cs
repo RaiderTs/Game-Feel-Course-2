@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource _currentMusic;
 
+    #region Unity Methods
+
     private void Start()
     {
         FightMusic();
@@ -35,6 +37,10 @@ public class AudioManager : MonoBehaviour
         DiscoBallManager.OnDiscoBallHitEvent -= DiscoBallMusic;
     }
 
+    #endregion
+
+    #region Sound Methods
+
     private void PlayRandomSound(SoundSO[] sounds) // рандомный звук из коллекции
     {
         if (sounds != null && sounds.Length > 0)
@@ -53,13 +59,15 @@ public class AudioManager : MonoBehaviour
         bool loop = soundSO.Loop;
         AudioMixerGroup audioMixerGroup;
 
-        if (soundSO.RandomizePitch)
-        {
-            float randomPitchModifier =
-                Random.Range(-soundSO.RandomPitchRangeModifier, soundSO.RandomPitchRangeModifier);
-            pitch = soundSO.Pitch + randomPitchModifier;
-        }
+        pitch = RandomizePitch(soundSO, pitch);
+        audioMixerGroup = DetermineAudioMixerGroup(soundSO);
 
+        PlaySound(clip, pitch, volume, loop, audioMixerGroup);
+    }
+
+    private AudioMixerGroup DetermineAudioMixerGroup(SoundSO soundSO)
+    {
+        AudioMixerGroup audioMixerGroup;
         switch (soundSO.AudioType)
         {
             case SoundSO.AudioTypes.SFX:
@@ -73,7 +81,19 @@ public class AudioManager : MonoBehaviour
                 break;
         }
 
-        PlaySound(clip, pitch, volume, loop, audioMixerGroup);
+        return audioMixerGroup;
+    }
+
+    private static float RandomizePitch(SoundSO soundSO, float pitch)
+    {
+        if (soundSO.RandomizePitch)
+        {
+            float randomPitchModifier =
+                Random.Range(-soundSO.RandomPitchRangeModifier, soundSO.RandomPitchRangeModifier);
+            pitch = soundSO.Pitch + randomPitchModifier;
+        }
+
+        return pitch;
     }
 
     private void PlaySound(AudioClip clip, float pitch, float volume, bool loop, AudioMixerGroup audioMixerGroup)
@@ -93,6 +113,11 @@ public class AudioManager : MonoBehaviour
             Destroy(soundObject, clip.length);
         }
 
+        DetermineMusic(audioMixerGroup, audioSource);
+    }
+
+    private void DetermineMusic(AudioMixerGroup audioMixerGroup, AudioSource audioSource)
+    {
         if (audioMixerGroup == _musicMixerGroup)
         {
             if (_currentMusic != null)
@@ -103,6 +128,10 @@ public class AudioManager : MonoBehaviour
             _currentMusic = audioSource;
         }
     }
+
+    #endregion
+
+    #region SFX
 
     private void Gun_OnShoot()
     {
@@ -119,6 +148,10 @@ public class AudioManager : MonoBehaviour
         PlayRandomSound(_soundsCollectionSO.Splat);
     }
 
+    #endregion
+
+    #region Music
+
     private void FightMusic()
     {
         PlayRandomSound(_soundsCollectionSO.FightMusic);
@@ -132,4 +165,6 @@ public class AudioManager : MonoBehaviour
         Invoke("FightMusic",
             soundLength); // Запускает метод FightMusic() через soundLength секунд, то есть после окончания проигрывания текущего аудиоклипа
     }
+
+    #endregion
 }
