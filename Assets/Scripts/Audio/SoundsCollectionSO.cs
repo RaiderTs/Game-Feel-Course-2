@@ -5,7 +5,10 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class SoundsCollectionSO : ScriptableObject
 {
-    public SoundSO[] GunShoot;
+    [Header("Music")] public SoundSO[] FightMusic;
+    public SoundSO[] DiscoParty;
+
+    [Header("SFX")] public SoundSO[] GunShoot;
     public SoundSO[] Jump;
     public SoundSO[] Splat;
 }
