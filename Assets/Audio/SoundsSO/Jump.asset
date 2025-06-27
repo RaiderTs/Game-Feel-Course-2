@@ -16,6 +16,6 @@ MonoBehaviour:
   Clip: {fileID: 8300000, guid: e6541ccc7dfe30f43a692c8fb53915f2, type: 3}
   Loop: 0
   RandomizePitch: 0
-  RandomPitchRangeModifier: 0.1
+  RandomPitchRangeModifier: 0.413
   Volume: 0.41
   Pitch: 1

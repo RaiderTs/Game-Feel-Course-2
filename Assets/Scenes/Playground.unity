@@ -165,8 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _masterVolume: 1
-  _gunShoot: {fileID: 11400000, guid: 9bfda1b084d0e264f885a244c5c654c5, type: 2}
-  _jump: {fileID: 11400000, guid: c0b8f6191a7ccf94ab23e33fb5b1ec5d, type: 2}
+  _soundsCollectionSo: {fileID: 11400000, guid: 092f09b981372414ba754493c385f3d0, type: 2}
 --- !u!1 &152649724
 GameObject:
   m_ObjectHideFlags: 0

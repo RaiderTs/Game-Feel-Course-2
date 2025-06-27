@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ad2203167f84de4b850d36af5082699, type: 3}
-  m_Name: Shoot
+  m_Name: Splatter_1
   m_EditorClassIdentifier: 
   AudioType: 0
-  Clip: {fileID: 8300000, guid: 85dfbc89f6b06234a9f4976fd4817a95, type: 3}
+  Clip: {fileID: 8300000, guid: 39867075ce23a234d851ac5ae4970e03, type: 3}
   Loop: 0
   RandomizePitch: 1
-  RandomPitchRangeModifier: 0.101
+  RandomPitchRangeModifier: 0.1
   Volume: 1
   Pitch: 1
