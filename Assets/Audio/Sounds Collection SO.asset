@@ -23,3 +23,5 @@ MonoBehaviour:
   Splat:
   - {fileID: 11400000, guid: 97fe8e1f5d653c648bbc6105b7945ede, type: 2}
   - {fileID: 11400000, guid: cf932663375f905468c740793af5aa6c, type: 2}
+  Jetpack:
+  - {fileID: 11400000, guid: 2d75a3d0b4ded2d4d807757d112a4fc8, type: 2}

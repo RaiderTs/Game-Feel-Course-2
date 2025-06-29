@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _coyoteTime = 0.5f;
 
     // для jetpck    
-    [SerializeField] private float _jetpackTime = 0.6f;
+    [SerializeField] private float _jetpackTime = 0.8f;
     [SerializeField] private float _jetpackStrenght = 11f;
 
 
@@ -195,6 +195,7 @@ public class PlayerController : MonoBehaviour
 
     private void StartJetpack()
     {
+        _jetpackTrailRenderer.emitting = true; // включаем trail для анимации
         _jetpackCoroutine = StartCoroutine(JetpackRoutine());
     }
 
@@ -208,6 +209,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
+        _jetpackTrailRenderer.emitting = false;
         _jetpackCoroutine = null;
     }
 }

@@ -11,4 +11,5 @@ public class SoundsCollectionSO : ScriptableObject
     [Header("SFX")] public SoundSO[] GunShoot;
     public SoundSO[] Jump;
     public SoundSO[] Splat;
+    public SoundSO[] Jetpack;
 }
