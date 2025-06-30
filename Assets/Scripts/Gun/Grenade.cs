@@ -7,11 +7,20 @@ using UnityEngine;
 public class Grenade : MonoBehaviour
 {
     public Action OnExplode; // делегат
+    public Action OnBeep;
 
     [SerializeField] private GameObject _explodeVFX; // объект взрыва
+    [SerializeField] private GameObject _grenadeLight;
     [SerializeField] private float _launchForce = 15f;
     [SerializeField] private float _torqueAmount = 2f;
+    [SerializeField] private float _explosionRadius = 3.5f; // радиус взрыва
+    [SerializeField] private LayerMask _enemyLayerMask;
+    [SerializeField] private int _damageAmount = 3;
+    [SerializeField] private float _lightBlinkTime = 0.15f; // время мигания
+    [SerializeField] private int _totalBlinks = 3; // количество миганий
+    [SerializeField] private int _explodeTime = 3; // время взрыва
 
+    private int _currentBlinks;
     private Rigidbody2D _rigidBody; // получаем доступ к компоненту Rigidbody2D
 
     private CinemachineImpulseSource
@@ -21,12 +30,16 @@ public class Grenade : MonoBehaviour
     {
         OnExplode += Explosion;
         OnExplode += GrenadeScreenShake;
+        OnExplode += DamageNearBy;
+        OnBeep += BlinkLight;
     }
 
     private void OnDisable()
     {
         OnExplode -= Explosion;
         OnExplode -= GrenadeScreenShake;
+        OnExplode -= DamageNearBy;
+        OnBeep -= BlinkLight;
     }
 
     private void Awake()
@@ -38,6 +51,7 @@ public class Grenade : MonoBehaviour
     private void Start()
     {
         LaunchGrenade();
+        StartCoroutine(CountdownExplodeRoutine());
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -68,5 +82,34 @@ public class Grenade : MonoBehaviour
     public void GrenadeScreenShake() // метод для создания импульса
     {
         _impulseSource.GenerateImpulse();
+    }
+
+    private void DamageNearBy()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, _explosionRadius, _enemyLayerMask);
+        foreach (Collider2D hit in hits)
+        {
+            Health health = hit.GetComponent<Health>(); // получаем доступ к компоненту Health
+            health?.TakeDamage(_damageAmount); // наносим урон
+        }
+    }
+
+    private IEnumerator CountdownExplodeRoutine()
+    {
+        while (_currentBlinks < _totalBlinks)
+        {
+            yield return new WaitForSeconds(_explodeTime / _totalBlinks); // ждем время взрыва
+            OnBeep?.Invoke(); // вызываем делегат
+            yield return new WaitForSeconds(_lightBlinkTime); // ждем время взрыва
+            _grenadeLight.SetActive(false);
+        }
+
+        OnExplode?.Invoke(); // вызываем делегат
+    }
+
+    private void BlinkLight()
+    {
+        _grenadeLight.SetActive(true);
+        _currentBlinks++;
     }
 }

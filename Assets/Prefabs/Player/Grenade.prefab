@@ -120,7 +120,7 @@ Transform:
   m_Children:
   - {fileID: 8208044839548310157}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5208017970635566602
 MonoBehaviour:
@@ -135,8 +135,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _explodeVFX: {fileID: 9000030371949450779, guid: 811467294fd771d45bee9032f457cd59, type: 3}
+  _grenadeLight: {fileID: 2805757188233569766}
   _launchForce: 15
   _torqueAmount: 0.2
+  _explosionRadius: 3.5
+  _enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  _damageAmount: 3
+  _lightBlinkTime: 0.15
+  _totalBlinks: 3
+  _explodeTime: 3
 --- !u!212 &3921857641453626969
 SpriteRenderer:
   m_ObjectHideFlags: 0
