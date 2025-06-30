@@ -2493,7 +2493,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ae6f4f327d8219441b3a03482d643c2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8411,6 +8411,8 @@ MonoBehaviour:
   _gunFireCD: 0.2
   _muzzleFlash: {fileID: 609898321}
   _muzzleFlashTime: 0.02
+  _grenadePrefab: {fileID: 3130401670818079465, guid: 7dd1e28b99dccd841a5d0c96a4540931, type: 3}
+  _grenadeShootCD: 0.8
 --- !u!95 &1414218016
 Animator:
   serializedVersion: 7

@@ -7,14 +7,18 @@ using Cinemachine;
 public class Gun : MonoBehaviour
 {
     public static Action OnShoot; // делегат для выстрелов
+    public static Action OnGrenadeShoot; // делегат для гранат
 
-    // public Transform BulletSpawnPoint => _bulletSpawnPoint;
-
-    [SerializeField] private Transform _bulletSpawnPoint;
+    [Header("Bullet")] [SerializeField] private Transform _bulletSpawnPoint;
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private float _gunFireCD = .5f; // время между выстрелами
     [SerializeField] private GameObject _muzzleFlash;
     [SerializeField] private float _muzzleFlashTime = 0.5f;
+
+
+    [Header("Grenade")] [SerializeField] private GameObject _grenadePrefab;
+    [SerializeField] private float _grenadeShootCD = .8f; // время между выстрелами
+
 
     private Coroutine _muzzleFlashRoutine;
     private ObjectPool<Bullet> _bulletPool; // пул для быстрой генерации пуль
@@ -22,8 +26,10 @@ public class Gun : MonoBehaviour
 
     private Vector2 _mousePos;
     private float _lastFireTime = 0f;
+    private float _lastGrenadeTime = 0f;
 
-
+    private PlayerInput _playerInput;
+    private FrameInput _frameInput;
     private CinemachineImpulseSource _impulseSource;
     private Animator _animator;
 
@@ -31,6 +37,8 @@ public class Gun : MonoBehaviour
     {
         _impulseSource = GetComponent<CinemachineImpulseSource>();
         _animator = GetComponent<Animator>();
+        _playerInput = GetComponentInParent<PlayerInput>();
+        _frameInput = _playerInput.FrameInput;
     }
 
 
@@ -41,6 +49,7 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
+        GatherInput(); // собираем ввод
         Shoot();
         RotateGun();
     }
@@ -53,6 +62,9 @@ public class Gun : MonoBehaviour
         OnShoot += FireAnimation;
         OnShoot += GunScreenShake;
         OnShoot += MuzzleFlash;
+        OnGrenadeShoot += ShootGrenade;
+        OnGrenadeShoot += FireAnimation;
+        OnGrenadeShoot += ResetLastGrenadeShootTime;
     }
 
     private void OnDisable()
@@ -62,11 +74,19 @@ public class Gun : MonoBehaviour
         OnShoot -= FireAnimation;
         OnShoot -= GunScreenShake;
         OnShoot -= MuzzleFlash;
+        OnGrenadeShoot -= ShootGrenade;
+        OnGrenadeShoot -= FireAnimation;
+        OnGrenadeShoot -= ResetLastGrenadeShootTime;
     }
 
     public void ReleaseBulletFromPool(Bullet bullet)
     {
         _bulletPool.Release(bullet);
+    }
+
+    private void GatherInput()
+    {
+        _frameInput = _playerInput.FrameInput; // собираем ввод
     }
 
 
@@ -87,17 +107,25 @@ public class Gun : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && Time.time >= _lastFireTime) // проверяем нажатие левой кнопки мыши и время
         {
-            // ShootProjectile();
-            // ResetLastFireTime();
-            OnShoot?.Invoke(); // вызываем событие. Вернее подписываемя на событие
+            OnShoot?.Invoke(); // Вызываем событие. Вернее подписываемя на событие
+        }
+
+        if (_frameInput.Grenade && Time.time >= _lastGrenadeTime) // проверяем нажатие ПРАВОЙ кнопки мыши и время
+        {
+            OnGrenadeShoot?.Invoke();
         }
     }
 
     private void ShootProjectile()
     {
-        // Bullet newBullet = Instantiate(_bulletPrefab, _bulletSpawnPoint.position, Quaternion.identity);
         Bullet newBullet = _bulletPool.Get();
         newBullet.Init(this, _bulletSpawnPoint.position, _mousePos); // Передаем позицию спавна и позицию мыши
+    }
+
+    private void ShootGrenade()
+    {
+        Instantiate(_grenadePrefab, _bulletSpawnPoint.position, Quaternion.identity);
+        _lastGrenadeTime = Time.time;
     }
 
     private void FireAnimation()
@@ -108,6 +136,12 @@ public class Gun : MonoBehaviour
     private void ResetLastFireTime()
     {
         _lastFireTime = Time.time + _gunFireCD; // обновляем время последнего выстрела
+    }
+
+
+    private void ResetLastGrenadeShootTime()
+    {
+        _lastGrenadeTime = Time.time + _grenadeShootCD; // обновляем время последнего броска гранаты
     }
 
     private void GunScreenShake()
