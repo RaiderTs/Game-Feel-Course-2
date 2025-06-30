@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
-    
+
     [Range(0f, 2f)] [SerializeField] private float _masterVolume = 1f;
     [SerializeField] private SoundsCollectionSO _soundsCollectionSO;
     [SerializeField] private AudioMixerGroup _sfxMixerGroup;
@@ -180,6 +180,11 @@ public class AudioManager : MonoBehaviour
     private void Gun_OnGrenadeShoot()
     {
         PlayRandomSound(_soundsCollectionSO.GrenadeShoot);
+    }
+
+    public void Enemy_OnPlayerHit()
+    {
+        PlayRandomSound(_soundsCollectionSO.PlayerHit);
     }
 
     #endregion

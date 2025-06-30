@@ -31,3 +31,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9b3f8e072eccd0d469123309aa3a9c92, type: 2}
   GrenadeBeep:
   - {fileID: 11400000, guid: 5cd1436b945af8a41bc66278ded65926, type: 2}
+  PlayerHit:
+  - {fileID: 11400000, guid: 93f61838b0ba48e4c9116b3d4c794bc1, type: 2}

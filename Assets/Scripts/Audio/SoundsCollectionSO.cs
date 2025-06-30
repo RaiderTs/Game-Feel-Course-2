@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 [CreateAssetMenu()]
 public class SoundsCollectionSO : ScriptableObject
@@ -15,4 +16,5 @@ public class SoundsCollectionSO : ScriptableObject
     public SoundSO[] GrenadeShoot;
     public SoundSO[] GrenadeExplode;
     public SoundSO[] GrenadeBeep;
+    public SoundSO[] PlayerHit;
 }

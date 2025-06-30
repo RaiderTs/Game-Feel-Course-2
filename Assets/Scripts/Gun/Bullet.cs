@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour
 
 
         IDamageable iDamageable = other.gameObject.GetComponent<IDamageable>();
-        iDamageable?.TakeDamage(_damageAmount, _knockbackTrust);
+        iDamageable?.TakeDamage(_fireDirection, _damageAmount, _knockbackTrust);
 
         _gun.ReleaseBulletFromPool(this); // освобождаем пулю из пуула
     }
