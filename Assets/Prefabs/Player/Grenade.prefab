@@ -134,6 +134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b942e49fa063fc540afc620b2b2f52f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _explodeVFX: {fileID: 9000030371949450779, guid: 811467294fd771d45bee9032f457cd59, type: 3}
+  _launchForce: 15
+  _torqueAmount: 0.2
 --- !u!212 &3921857641453626969
 SpriteRenderer:
   m_ObjectHideFlags: 0

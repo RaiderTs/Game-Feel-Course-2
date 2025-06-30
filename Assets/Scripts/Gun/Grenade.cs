@@ -1,18 +1,72 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Action OnExplode; // делегат
+
+    [SerializeField] private GameObject _explodeVFX; // объект взрыва
+    [SerializeField] private float _launchForce = 15f;
+    [SerializeField] private float _torqueAmount = 2f;
+
+    private Rigidbody2D _rigidBody; // получаем доступ к компоненту Rigidbody2D
+
+    private CinemachineImpulseSource
+        _impulseSource; // получаем доступ к компоненту CinemachineImpulseSource для создания импульса
+
+    private void OnEnable()
     {
-        
+        OnExplode += Explosion;
+        OnExplode += GrenadeScreenShake;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        OnExplode -= Explosion;
+        OnExplode -= GrenadeScreenShake;
+    }
+
+    private void Awake()
+    {
+        _rigidBody = GetComponent<Rigidbody2D>();
+        _impulseSource = GetComponent<CinemachineImpulseSource>();
+    }
+
+    private void Start()
+    {
+        LaunchGrenade();
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.GetComponent<Enemy>())
+        {
+            OnExplode?.Invoke();
+        }
+    }
+
+    private void LaunchGrenade() // метод для запуска гранаты
+    {
+        Vector2 mousePos =
+            Camera.main.ScreenToWorldPoint(Input.mousePosition); // получаем позицию мыши в мировых координатах
+        Vector2 directionToMouse =
+            (mousePos - (Vector2)transform.position).normalized; // вычисляем направление движения гранаты
+        _rigidBody.AddForce(directionToMouse * _launchForce,
+            ForceMode2D.Impulse); // добавляем импульс в направлении мыши
+        _rigidBody.AddTorque(_torqueAmount, ForceMode2D.Impulse); // добавляем импульс вращения
+    }
+
+    public void Explosion() // метод для взрыва гранаты
+    {
+        Instantiate(_explodeVFX, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
+
+    public void GrenadeScreenShake() // метод для создания импульса
+    {
+        _impulseSource.GenerateImpulse();
     }
 }
