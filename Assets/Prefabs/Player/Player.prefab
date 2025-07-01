@@ -214,6 +214,7 @@ MonoBehaviour:
   _coyoteTime: 0.1
   _jetpackTime: 0.6
   _jetpackStrenght: 11
+  _maxFallSpeedVelocity: -25
 --- !u!114 &25249227589831601
 MonoBehaviour:
   m_ObjectHideFlags: 0
