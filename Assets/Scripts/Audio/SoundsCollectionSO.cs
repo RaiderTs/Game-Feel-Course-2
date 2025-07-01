@@ -17,4 +17,5 @@ public class SoundsCollectionSO : ScriptableObject
     public SoundSO[] GrenadeExplode;
     public SoundSO[] GrenadeBeep;
     public SoundSO[] PlayerHit;
+    public SoundSO[] Megakill;
 }
