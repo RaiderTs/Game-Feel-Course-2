@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 166d0a48af0f6b048b533ab5b93f0364, type: 3}
+  m_Name: Sounds Collection SO
+  m_EditorClassIdentifier: 
+  FightMusic:
+  - {fileID: 11400000, guid: cd852fcdc1f55f7458ff53068f976556, type: 2}
+  DiscoParty:
+  - {fileID: 11400000, guid: ffe82ec1aa0806a48a2060f32efe9971, type: 2}
+  GunShoot:
+  - {fileID: 11400000, guid: 9bfda1b084d0e264f885a244c5c654c5, type: 2}
+  Jump:
+  - {fileID: 11400000, guid: c0b8f6191a7ccf94ab23e33fb5b1ec5d, type: 2}
+  Splat:
+  - {fileID: 11400000, guid: 97fe8e1f5d653c648bbc6105b7945ede, type: 2}
+  - {fileID: 11400000, guid: cf932663375f905468c740793af5aa6c, type: 2}
+  Jetpack:
+  - {fileID: 11400000, guid: 2d75a3d0b4ded2d4d807757d112a4fc8, type: 2}
+  GrenadeShoot:
+  - {fileID: 11400000, guid: 8ac1814cf0d75a34f8c7a2d7873c5b98, type: 2}
+  GrenadeExplode:
+  - {fileID: 11400000, guid: 9b3f8e072eccd0d469123309aa3a9c92, type: 2}
+  GrenadeBeep:
+  - {fileID: 11400000, guid: 5cd1436b945af8a41bc66278ded65926, type: 2}
+  PlayerHit:
+  - {fileID: 11400000, guid: 93f61838b0ba48e4c9116b3d4c794bc1, type: 2}
+  Megakill:
+  - {fileID: 11400000, guid: 91ac7d8d692bc6547bad886095417396, type: 2}
